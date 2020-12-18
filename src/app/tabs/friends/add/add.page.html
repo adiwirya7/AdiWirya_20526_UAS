@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/friends"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Friend</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="userData">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-sm="6">
+        <ion-item lines="none" class="ion-margin-top bordered">
+          <ion-input type="text" [(ngModel)]="searchValue" placeholder="Input Users Email"></ion-input>
+          <ion-icon class="ion-align-self-end" slot="end" name="search-outline" (click)="searchUser()" style="cursor: pointer"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center" *ngIf="userFound == true;">
+      <ion-col size="6" size-sm="2">
+        <ion-img src="assets/icon/profile.png" style="object-fit: contain" *ngIf="!searchedUserData.imageUrl"></ion-img>
+        <img id="userPicture" src="{{ searchedUserData.imageUrl }}" class="circle-image" *ngIf="searchedUserData.imageUrl" (load)="imageLoaded($event)">
+
+        <ion-text class="ion-text-center">
+          <h2 class="text-bold ion-no-margin ion-margin-top" style="font-size: 1.2em;">
+            {{ searchedUserData.fullName }}
+          </h2>
+        </ion-text>
+
+        <ion-button class="ion-margin-top" color="tertiary" expand="block" mode="ios" (click)="addFriend()" *ngIf="isFriend == false">Add Friend</ion-button>
+        <div class="ion-text-center ion-margin-top text-gray" style="font-size: 0.8em" *ngIf="isFriend == true">Friends have been added!</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

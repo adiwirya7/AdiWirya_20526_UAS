@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-margin-horizontal" *ngIf="userData">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="7" size-sm="2">
+        <ion-row class="ion-align-items-end ion-justify-content-end">
+          <ion-fab-button color="primary" style="position: absolute; z-index: 1" (click)="presentImageActionSheet()">
+            <ion-icon name="camera"></ion-icon>
+          </ion-fab-button>
+          <input type="file" *ngIf="isDesktop" #filePicker (change)="onFileChoose($event)"/>
+          <ion-img src="assets/icon/profile.png" style="object-fit: contain; width: 100%;" *ngIf="!imageUrl"></ion-img>
+          <img id="profilePicture" src="{{imageUrl}}" class="circle-image" *ngIf="imageUrl" (load)="imageLoaded()">
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" size-sm="6" offset-sm="3">
+        <ion-text class="ion-text-center">
+          <h2 class="text-bold ion-no-margin ion-margin-top">
+            <b>{{ userData.fullName }}</b>
+          </h2>
+          <h4 class="ion-no-margin ion-padding-bottom">
+            <b>00000020526</b>
+          </h4>
+        </ion-text>
+
+        <div class="ion-margin-top">
+          <ion-text>
+            <span class="text-bold"><b>Kesan</b></span>
+            <div>
+              <ion-item style="padding: 16px;">Selama semester ini saya jadi mengerti menggunakan ionic.</ion-item>
+            </div>
+          </ion-text>
+        </div>
+
+        <div class="ion-margin-top">
+          <ion-text>
+            <span class="text-bold"><b>Pesan</b></span>
+            <div>
+              <ion-item style="padding: 16px;">Semoga mata kuliah ini dapat di update dengan framework terbaru dengan mengikuti trend agar mahasiswa dapat langsung menguasai skill yang dibutuhkan oleh pasar.</ion-item>
+            </div>
+          </ion-text>
+        </div>
+
+        <div class="ion-padding ion-margin-top bordered">
+          <ion-card-title class="ion-margin-bottom text-bold" style="font-size: 1em">
+            <b>My Feeds</b>
+          </ion-card-title>
+
+          <div class="text-gray" *ngIf="!userLocations" style="font-size:0.8em">
+            There is no location history!
+          </div>
+
+          <div *ngIf="userLocations">
+            <ion-item lines="none" class="bordered" style="font-size: 0.8em" ion-long-press [interval]="800"  *ngFor="let eachLocation of userLocations; let i = index" (pressed)="onPress(i)">
+              <ion-label>
+                <span class="text-gray" style="font-size: 0.9em">{{ eachLocation.date + ' ' + eachLocation.time }}</span>
+                <div style="padding-top: 4px; font-size: 1.1em">{{ userData.fullName + ' check-in at ' + eachLocation.locName }}</div>
+              </ion-label>
+            </ion-item>
+          </div>
+        </div>
+
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12">
+              <ion-button class="logout"  expand="block" (click)="onLogout()">
+              Logout
+              </ion-button>
+            </ion-col>
+         </ion-row>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

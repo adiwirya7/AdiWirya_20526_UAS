@@ -1,0 +1,61 @@
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8" class="ion-padding-top">
+        <ion-label class="ion-text-center">
+          <h1><b>Register</b></h1>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <div class="ion-padding-horizontal">
+          <form class="form" [formGroup]="form" (ngSubmit)="onRegister()">
+
+            <ion-item class="bordered ion-margin-top">
+              <ion-label position="floating">First Name</ion-label>
+              <ion-input type="text" formControlName="firstName"></ion-input>
+            </ion-item>
+
+            <ion-item class="bordered ion-margin-top">
+              <ion-label position="floating">Last Name</ion-label>
+              <ion-input type="text" value="" formControlName="lastName"></ion-input>
+            </ion-item>
+
+            <ion-item class="bordered ion-margin-top">
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+
+            <ion-item class="bordered ion-margin-top">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+
+            <ion-item class="bordered ion-margin-top">
+              <ion-label position="floating">Confirm Password</ion-label>
+              <ion-input type="password" formControlName="confirmPassword"></ion-input>
+            </ion-item>
+
+            <ion-item lines="none" class="ion-margin-top">
+              <ion-checkbox formControlName="checkbox" class="ion-margin-end" color="primary"></ion-checkbox>
+              <p>I agree to all terms and condition</p>
+            </ion-item>
+
+            <ion-row class="ion-justify-content-center ion-margin-top">
+              <ion-col size="12">
+                <ion-button type="submit" class="login-button" expand="block" [disabled]="!form.valid">Register</ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button  expand="block" fill="clear" expand="full" href="/login">Already have account? Log in here.</ion-button>
+  </ion-toolbar>
+</ion-footer>

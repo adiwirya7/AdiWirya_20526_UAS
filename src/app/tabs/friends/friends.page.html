@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Friend List</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['add']">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11" size-sm="6">
+        <ion-item lines="none" class="ion-margin-top bordered">
+          <ion-input type="text" [(ngModel)]="searchValue" placeholder="Input Friends Name" (ionChange)="searchFriends()"></ion-input>
+          <ion-icon class="ion-align-self-end" slot="start" name="search-outline" (click)="searchFriends()" style="cursor: pointer"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11" size-sm="6" *ngIf="userFilter">
+        <div *ngFor="let friends of userFilter; let i = index" >
+          <ion-row class="ion-align-items-center">
+            <ion-col size="3" size-sm="2">
+              <ion-img src="assets/icon/profile.png" style="object-fit: contain" *ngIf="!friends.imageUrl"></ion-img>
+              <img id="friendsPicture{{i}}" src="{{ friends.imageUrl }}" class="circle-image" *ngIf="friends.imageUrl" (load)="imageLoaded($event)" >
+            </ion-col>
+            <ion-col size="8" size-sm="10">
+              {{ friends.fullName }}
+            </ion-col>
+            <ion-col size="1" size-sm="2">
+              <ion-icon class="ion-align-self-end" color="danger" name="trash" (click)="onPress(i, friends.fullName)"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

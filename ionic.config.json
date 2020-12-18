@@ -1,0 +1,8 @@
+{
+  "name": "AdiWirya_20526_UAS",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
