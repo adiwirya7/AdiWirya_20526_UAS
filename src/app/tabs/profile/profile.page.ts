@@ -46,7 +46,7 @@ export class ProfilePage implements OnInit {
     this.firebaseAuthService.userDetails().subscribe(res => {
       if (res !== null){
         this.id = res.uid;
-        this.getUserData();
+        // this.getUserData();
       }
     }, err => {
       console.log(err);
